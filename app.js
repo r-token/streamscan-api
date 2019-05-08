@@ -59,12 +59,12 @@ app.get('/vue', function (req, res) {
         //The p CSS selector matches all 'p' elements
         const urlElems = $('p')
 
-        const urlSpan = $(urlElems[9])
+        const urlSpan = $(urlElems[10])
         const urlText = urlSpan.text()
         const splitText = urlText.split(':')
         const channels = splitText[1]
         const arrayVueChannels = channels.split(',')
-        //console.log(arrayVueChannels)
+        //console.log(urlText)
         res.send(arrayVueChannels)
     })
 })
