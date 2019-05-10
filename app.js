@@ -23,9 +23,12 @@ app.get('/api/yttv', function (req, res) {
         const urlText = urlSpan.text()
         const splitText = urlText.split(':')
         const channels = splitText[1]
-        const arrayYTTVChannels = channels.split(',')
-        //console.log(arrayYTTVChannels)
-        res.send(arrayYTTVChannels)
+        const uglyYTTVChannels = channels.split(',')
+        const YTTVChannels = uglyYTTVChannels.map(function (channel) {
+            return channel.trim()
+        })
+        //console.log(YTTVChannels)
+        res.send(YTTVChannels)
     })
 })
 
@@ -39,13 +42,16 @@ app.get('/api/hulu', function (req, res) {
         //The p CSS selector matches all 'p' elements
         const urlElems = $('p')
 
-        const urlSpan = $(urlElems[45])
+        const urlSpan = $(urlElems[46])
         const urlText = urlSpan.text()
         const splitText = urlText.split(':')
         const channels = splitText[1]
-        const arrayHuluChannels = channels.split(',')
-        //console.log(arrayHuluChannels)
-        res.send(arrayHuluChannels)
+        const uglyHuluChannels = channels.split(',')
+        const huluChannels = uglyHuluChannels.map(function (channel) {
+            return channel.trim()
+        })
+        console.log(huluChannels)
+        res.send(huluChannels)
     })
 })
 
@@ -63,9 +69,12 @@ app.get('/api/vue', function (req, res) {
         const urlText = urlSpan.text()
         const splitText = urlText.split(':')
         const channels = splitText[1]
-        const arrayVueChannels = channels.split(',')
+        const uglyVueChannels = channels.split(',')
+        const vueChannels = uglyVueChannels.map(function (channel) {
+            return channel.trim()
+        })
         //console.log(urlText)
-        res.send(arrayVueChannels)
+        res.send(vueChannels)
     })
 })
 
