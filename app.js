@@ -9,49 +9,23 @@ app.get('/', function (req, res) {
     res.send(JSON.stringify({ Hello: 'World'}))
 })
 
-app.get('/api/yttv', function (req, res) {
-    //Scrape YouTube TV Channels
-    axios.get('https://www.groundedreason.com/youtube-tv-channels/').then((response) => {
-        //Load the web page source code into a cheerio instance
-        const $ = cheerio.load(response.data)
-        //'response' is an HTTP response object, whose body is contained in its 'data' attribute
-
-        //The p CSS selector matches all 'p' elements
-        const urlElems = $('p')
-
-        const urlSpan = $(urlElems[12])
-        const urlText = urlSpan.text()
-        const splitText = urlText.split(':')
-        const channels = splitText[1]
-        const uglyYTTVChannels = channels.split(',')
-        const YTTVChannels = uglyYTTVChannels.map(function (channel) {
-            return channel.trim()
-        })
-        //console.log(YTTVChannels)
-        res.send(YTTVChannels)
-    })
-})
-
 app.get('/api/hulu', function (req, res) {
-    //Scrape Hulu Live TV Channels
-    axios.get('https://www.groundedreason.com/tv-shows-hulu-worth-cost/').then((response) => {
+    //Scrape Hulu with Live TV Channels
+    axios.get('https://www.hulu.com/live-tv').then((response) => {
         //Load the web page source code into a cheerio instance
         const $ = cheerio.load(response.data)
         //'response' is an HTTP response object, whose body is contained in its 'data' attribute
 
-        //The p CSS selector matches all 'p' elements
-        const urlElems = $('p')
+        var huluChannels = []
 
-        const urlSpan = $(urlElems[46])
-        const urlText = urlSpan.text()
-        const splitText = urlText.split(':')
-        const channels = splitText[1]
-        const uglyHuluChannels = channels.split(',')
-        const huluChannels = uglyHuluChannels.map(function (channel) {
-            return channel.trim()
+        //var channels = $('div.network-list').children().attr('alt')
+        $('div.network-list').children().each(function (index, element) {
+            huluChannels[index] = $(this).attr('alt')
         })
-        console.log(huluChannels)
-        res.send(huluChannels)
+
+        res.write(JSON.stringify({Price: 44.99}))
+        res.write(JSON.stringify({Channels: huluChannels}))
+        res.end()
     })
 })
 
@@ -73,8 +47,41 @@ app.get('/api/vue', function (req, res) {
         const vueChannels = uglyVueChannels.map(function (channel) {
             return channel.trim()
         })
+
+        vueChannels[0] = "ABC On Demand"
+        vueChannels[vueChannels.length-1] = "WE TV"
         //console.log(urlText)
-        res.send(vueChannels)
+        
+        res.write(JSON.stringify({Price: 44.99}))
+        res.write(JSON.stringify({Channels: vueChannels}))
+        res.end()
+    })
+})
+
+app.get('/api/yttv', function (req, res) {
+    //Scrape YouTube TV Channels
+    axios.get('https://www.groundedreason.com/youtube-tv-channels/').then((response) => {
+        //Load the web page source code into a cheerio instance
+        const $ = cheerio.load(response.data)
+        //'response' is an HTTP response object, whose body is contained in its 'data' attribute
+
+        //The p CSS selector matches all 'p' elements
+        const urlElems = $('p')
+
+        const urlSpan = $(urlElems[12])
+        const urlText = urlSpan.text()
+        const splitText = urlText.split(':')
+        const channels = splitText[1]
+        const uglyYTTVChannels = channels.split(',')
+        const YTTVChannels = uglyYTTVChannels.map(function (channel) {
+            return channel.trim()
+        })
+
+        YTTVChannels[YTTVChannels.length - 1] = "WE TV"
+        //console.log(YTTVChannels)
+        res.write(JSON.stringify({Price: 49.99}))
+        res.write(JSON.stringify({Channels: YTTVChannels}))
+        res.end()
     })
 })
 
