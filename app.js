@@ -114,7 +114,43 @@ app.get('/api/yttv', function (req, res) {
     })
 })
 
-app.get('/api/sling', function (req, res) {
+app.get('/api/sling-blue', function (req, res) {
+    //Scrape Hulu with Live TV Channels
+    axios.get('https://www.dailydot.com/upstream/sling-tv-channels-lineup/').then((response) => {
+        //Load the web page source code into a cheerio instance
+        const $ = cheerio.load(response.data, {
+            normalizeWhiteSpace: true,
+            xmlMode: true
+        })
+        //'response' is an HTTP response object, whose body is contained in its 'data' attribute
+
+        var slingBlueChannels = []
+
+        //var channels = $('div.network-list').children().attr('alt')
+        $('ul  > li > span').each(function(index, element) {
+            slingBlueChannels[index] = $(this).text()
+        })
+
+        slingBlueChannels.splice(0, 79)
+        slingBlueChannels.splice(48)
+
+        slingBlueChannels.sort(function(a, b) {
+            var stringA = a.toLowerCase(), stringB = b.toLowerCase()
+            if (stringA < stringB) {
+                return -1
+            }
+            if (stringA > stringB) {
+                return 1
+            }
+            return 0
+        })
+
+        res.write(JSON.stringify({Price: "$25/month", Channels: slingBlueChannels}))
+        res.end()
+    })
+})
+
+app.get('/api/sling-orange', function (req, res) {
     //Scrape Hulu with Live TV Channels
     axios.get('https://www.dailydot.com/upstream/sling-tv-channels-lineup/').then((response) => {
         //Load the web page source code into a cheerio instance
@@ -125,19 +161,14 @@ app.get('/api/sling', function (req, res) {
         //'response' is an HTTP response object, whose body is contained in its 'data' attribute
 
         var slingOrangeChannels = []
-        var slingBlueChannels = []
 
         //var channels = $('div.network-list').children().attr('alt')
         $('ul  > li > span').each(function(index, element) {
             slingOrangeChannels[index] = $(this).text()
-            slingBlueChannels[index] = $(this).text()
         })
 
         slingOrangeChannels.splice(0, 45)
         slingOrangeChannels.splice(34)
-
-        slingBlueChannels.splice(0, 79)
-        slingBlueChannels.splice(48)
 
 
         slingOrangeChannels.sort(function(a, b) {
@@ -151,18 +182,7 @@ app.get('/api/sling', function (req, res) {
             return 0
         })
 
-        slingBlueChannels.sort(function(a, b) {
-            var stringA = a.toLowerCase(), stringB = b.toLowerCase()
-            if (stringA < stringB) {
-                return -1
-            }
-            if (stringA > stringB) {
-                return 1
-            }
-            return 0
-        })
-
-        res.write(JSON.stringify({OrangePrice: "$25/month", BluePrice: "$25/month", OrangeChannels: slingOrangeChannels, BlueChannels: slingBlueChannels}))
+        res.write(JSON.stringify({Price: "$25/month", Channels: slingOrangeChannels}))
         res.end()
     })
 })
