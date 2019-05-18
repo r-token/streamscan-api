@@ -19,12 +19,11 @@ app.get('/api/hulu', function (req, res) {
         var huluChannels = []
 
         //var channels = $('div.network-list').children().attr('alt')
-        $('div.network-list').children().each(function (index, element) {
+        $('div.network-list').children().map(function (index, element) {
             huluChannels[index] = $(this).attr('alt')
         })
 
-        res.write(JSON.stringify({Price: 44.99}))
-        res.write(JSON.stringify({Channels: huluChannels}))
+        res.write(JSON.stringify({Price: "44.99", Channels: huluChannels}))
         res.end()
     })
 })
@@ -52,8 +51,7 @@ app.get('/api/vue', function (req, res) {
         vueChannels[vueChannels.length-1] = "WE TV"
         //console.log(urlText)
         
-        res.write(JSON.stringify({Price: 44.99}))
-        res.write(JSON.stringify({Channels: vueChannels}))
+        res.write(JSON.stringify({Price: "44.99", Channels: vueChannels}))
         res.end()
     })
 })
@@ -79,8 +77,8 @@ app.get('/api/yttv', function (req, res) {
 
         YTTVChannels[YTTVChannels.length - 1] = "WE TV"
         //console.log(YTTVChannels)
-        res.write(JSON.stringify({Price: 49.99}))
-        res.write(JSON.stringify({Channels: YTTVChannels}))
+        
+        res.write(JSON.stringify({Price: "49.99", Channels: YTTVChannels}))
         res.end()
     })
 })
