@@ -5,10 +5,14 @@ const cheerio = require('cheerio')
 var port = process.env.PORT || 3000
 const app = express()
 
+const prodURL = "https://polar-tor-80040.herokuapp.com"
+
 /// This could use a nice refactoring ///
 
+// Prod
 app.get('/', function (req, res) {
-    res.send(JSON.stringify({ Hello: 'World'}))
+    res.send(JSON.stringify({Service1: "<a href = '`${prodURL}`/api/dtvnow-plus'/>DirecTV Now - Plus</a>", Service2: "<a href = '`${prodURL}`/api/dtvnow-max'/>DirecTV Now - Max</a>", Service3: "<a href = '`${prodURL}`/api/fubo'/>Fubo TV</a>", Service4: "<a href = '`${prodURL}`/api/hulu'/>Hulu</a>", Service5: "<a href = '`${prodURL}`/api/philo'/>Philo</a>", Service6: "<a href = '`${prodURL}`/api/sling-blue'/>Sling Blue</a>", Service7: "<a href = '`${prodURL}`/api/sling-orange'/>Sling Orange</a>", Service8: "<a href = '`${prodURL}`/api/vue-access'/>PlayStation Vue - Access</a>", Service9: "<a href = '`${prodURL}`/api/vue-core'/>PlayStation Vue - Core</a>", Service10: "<a href = '`${prodURL}`/api/yttv'/>YouTube TV</a>"}))
+
 })
 
 // DirecTV Now Plus
