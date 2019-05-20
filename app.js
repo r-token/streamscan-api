@@ -11,8 +11,7 @@ const prodURL = "https://polar-tor-80040.herokuapp.com"
 
 // Prod
 app.get('/', function (req, res) {
-    res.send(JSON.stringify({Service1: "<a href = '`${prodURL}`/api/dtvnow-plus'/>DirecTV Now - Plus</a>", Service2: "<a href = '`${prodURL}`/api/dtvnow-max'/>DirecTV Now - Max</a>", Service3: "<a href = '`${prodURL}`/api/fubo'/>Fubo TV</a>", Service4: "<a href = '`${prodURL}`/api/hulu'/>Hulu</a>", Service5: "<a href = '`${prodURL}`/api/philo'/>Philo</a>", Service6: "<a href = '`${prodURL}`/api/sling-blue'/>Sling Blue</a>", Service7: "<a href = '`${prodURL}`/api/sling-orange'/>Sling Orange</a>", Service8: "<a href = '`${prodURL}`/api/vue-access'/>PlayStation Vue - Access</a>", Service9: "<a href = '`${prodURL}`/api/vue-core'/>PlayStation Vue - Core</a>", Service10: "<a href = '`${prodURL}`/api/yttv'/>YouTube TV</a>"}))
-
+    res.send(JSON.stringify({Service1: "<a href = 'https://polar-tor-80040.herokuapp.com/api/dtvnow-plus'/>DirecTV Now - Plus</a>", Service2: "<a href = 'https://polar-tor-80040.herokuapp.com/api/dtvnow-max'/>DirecTV Now - Max</a>", Service3: "<a href = 'https://polar-tor-80040.herokuapp.com/api/fubo'/>Fubo TV</a>", Service4: "<a href = 'https://polar-tor-80040.herokuapp.com/api/hulu'/>Hulu</a>", Service5: "<a href = 'https://polar-tor-80040.herokuapp.com/api/philo'/>Philo</a>", Service6: "<a href = 'https://polar-tor-80040.herokuapp.com/api/sling-blue'/>Sling Blue</a>", Service7: "<a href = 'https://polar-tor-80040.herokuapp.com/api/sling-orange'/>Sling Orange</a>", Service8: "<a href = 'https://polar-tor-80040.herokuapp.com/api/vue-access'/>Vue - Access</a>", Service9: "<a href = 'https://polar-tor-80040.herokuapp.com/api/vue-core'/>Vue - Core</a>", Service10: "<a href = 'https://polar-tor-80040.herokuapp.com/api/yttv'/>YouTube TV</a>"}))
 })
 
 // DirecTV Now Plus
