@@ -7,12 +7,12 @@ const app = express()
 
 /// This could use a nice refactoring ///
 
-// Prod
+// Home Navigation
 app.get('/', function (req, res) {
     res.send(JSON.stringify({Service1: " <a href = 'https://polar-tor-80040.herokuapp.com/api/dtvnow-plus'/>DirecTV Now - Plus</a> ", Service2: " <a href = 'https://polar-tor-80040.herokuapp.com/api/dtvnow-max'/>DirecTV Now - Max</a> ", Service3: " <a href = 'https://polar-tor-80040.herokuapp.com/api/fubo'/>Fubo TV</a> ", Service4: " <a href = 'https://polar-tor-80040.herokuapp.com/api/hulu'/>Hulu</a> ", Service5: " <a href = 'https://polar-tor-80040.herokuapp.com/api/philo'/>Philo</a> ", Service6: " <a href = 'https://polar-tor-80040.herokuapp.com/api/sling-blue'/>Sling Blue</a> ", Service7: " <a href = 'https://polar-tor-80040.herokuapp.com/api/sling-orange'/>Sling Orange</a> ", Service8: " <a href = 'https://polar-tor-80040.herokuapp.com/api/vue-access'/>Vue - Access</a> ", Service9: " <a href = 'https://polar-tor-80040.herokuapp.com/api/vue-core'/>Vue - Core</a> ", Service10: " <a href = 'https://polar-tor-80040.herokuapp.com/api/yttv'/>YouTube TV</a> "}))
 })
 
-// DirecTV Now Plus
+// DirecTV Now - Plus Package
 app.get('/api/dtvnow-plus', function (req, res) {
     //Scrape PlayStation Vue Access Bundle Channels
     axios.get('https://www.streamingobserver.com/directv-now-channels-list/').then((response) => {
@@ -49,7 +49,7 @@ app.get('/api/dtvnow-plus', function (req, res) {
     })
 })
 
-// DirecTV Now Max
+// DirecTV Now - Max Package
 app.get('/api/dtvnow-max', function (req, res) {
     axios.get('https://www.streamingobserver.com/directv-now-channels-list/').then((response) => {
 
@@ -179,7 +179,7 @@ app.get('/api/philo', function (req, res) {
     })
 })
 
-// Sling TV Blue
+// Sling TV - Blue Package
 app.get('/api/sling-blue', function (req, res) {
     axios.get('https://www.dailydot.com/upstream/sling-tv-channels-lineup/').then((response) => {
 
@@ -213,7 +213,7 @@ app.get('/api/sling-blue', function (req, res) {
     })
 })
 
-// Sling TV Orange
+// Sling TV - Orange Package
 app.get('/api/sling-orange', function (req, res) {
     axios.get('https://www.dailydot.com/upstream/sling-tv-channels-lineup/').then((response) => {
         const $ = cheerio.load(response.data, {
@@ -246,7 +246,7 @@ app.get('/api/sling-orange', function (req, res) {
     })
 })
 
-// PlayStation Vue
+// PlayStation Vue - Access Package
 app.get('/api/vue-access', function (req, res) {
     axios.get('https://www.groundedreason.com/replace-cable-with-playstation-vue/').then((response) => {
 
@@ -281,7 +281,7 @@ app.get('/api/vue-access', function (req, res) {
     })
 })
 
-// PlayStation Vue
+// PlayStation Vue - Core Package
 app.get('/api/vue-core', function (req, res) {
     axios.get('https://www.dailydot.com/upstream/playstation-vue-channels-list/').then((response) => {
         const $ = cheerio.load(response.data, {
@@ -291,7 +291,7 @@ app.get('/api/vue-core', function (req, res) {
 
         var uglyVueCoreChannels = []
 
-        $('ul  > li > span').each(function(index, element) {
+        $('ul  > li').each(function(index, element) {
             uglyVueCoreChannels[index] = $(this).text()
         })
 
@@ -299,8 +299,8 @@ app.get('/api/vue-core', function (req, res) {
             return channel.trim()
         })
 
-        vueCoreChannels.splice(0, 90)
-        vueCoreChannels.splice(55)
+        vueCoreChannels.splice(0, 125)
+        vueCoreChannels.splice(50)
 
         vueCoreChannels.sort(function(a, b) {
             var stringA = a.toLowerCase(), stringB = b.toLowerCase()
