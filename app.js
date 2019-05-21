@@ -127,11 +127,12 @@ app.get('/api/hulu', function (req, res) {
 
         var huluChannels = []
 
-        $('ul  > li > span').each(function(index, element) {
+        $('ul  > li').each(function(index, element) {
             huluChannels[index] = $(this).text()
         })
 
-        huluChannels.splice(0, 45)
+        huluChannels.splice(0, 127)
+        huluChannels.splice(64)
 
         huluChannels.sort(function(a, b) {
             var stringA = a.toLowerCase(), stringB = b.toLowerCase()
@@ -143,6 +144,9 @@ app.get('/api/hulu', function (req, res) {
             }
             return 0
         })
+
+        console.log(huluChannels)
+        console.log(huluChannels.length)
 
         res.write(JSON.stringify({Price: "$44.99/month", Channels: huluChannels}))
         res.end()
