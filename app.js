@@ -43,6 +43,8 @@ app.get('/api/dtvnow-plus', function (req, res) {
             }
             return 0
         })
+
+        console.log(dtvNowPlusChannels.length)
         
         res.write(JSON.stringify({Price: "$50/month", Channels: dtvNowPlusChannels}))
         res.end()
@@ -79,6 +81,8 @@ app.get('/api/dtvnow-max', function (req, res) {
             }
             return 0
         })
+
+        console.log(dtvNowMaxChannels.length)
         
         res.write(JSON.stringify({Price: "$70/month", Channels: dtvNowMaxChannels}))
         res.end()
@@ -109,7 +113,7 @@ app.get('/api/fubo', function (req, res) {
             return 0
         })
 
-        //fuboChannels[5] = "beIN Sports Español"
+        console.log(fuboChannels.length)
         
         res.write(JSON.stringify({Price: "$54.99/month", Channels: fuboChannels}))
         res.end()
@@ -145,7 +149,6 @@ app.get('/api/hulu', function (req, res) {
             return 0
         })
 
-        console.log(huluChannels)
         console.log(huluChannels.length)
 
         res.write(JSON.stringify({Price: "$44.99/month", Channels: huluChannels}))
@@ -177,6 +180,8 @@ app.get('/api/philo', function (req, res) {
             }
             return 0
         })
+
+        console.log(philoChannels.length)
 
         res.write(JSON.stringify({Price: "$20/month", Channels: philoChannels}))
         res.end()
@@ -212,6 +217,8 @@ app.get('/api/sling-blue', function (req, res) {
             return 0
         })
 
+        console.log(slingBlueChannels.length)
+
         res.write(JSON.stringify({Price: "$25/month", Channels: slingBlueChannels}))
         res.end()
     })
@@ -244,6 +251,8 @@ app.get('/api/sling-orange', function (req, res) {
             }
             return 0
         })
+
+        console.log(slingOrangeChannels.length)
 
         res.write(JSON.stringify({Price: "$25/month", Channels: slingOrangeChannels}))
         res.end()
@@ -279,6 +288,8 @@ app.get('/api/vue-access', function (req, res) {
             }
             return 0
         })
+
+        console.log(vueAccessChannels.length)
         
         res.write(JSON.stringify({Price: "$44.99/month", Channels: vueAccessChannels}))
         res.end()
@@ -317,6 +328,8 @@ app.get('/api/vue-core', function (req, res) {
             return 0
         })
 
+        console.log(vueCoreChannels.length)
+
         res.write(JSON.stringify({Price: "$49.99/month", Channels: vueCoreChannels}))
         res.end()
     })
@@ -349,6 +362,8 @@ app.get('/api/yttv', function (req, res) {
             }
             return 0
         })
+
+        console.log(YTTVChannels.length)
         
         res.write(JSON.stringify({Price: "$49.99/month", Channels: YTTVChannels}))
         res.end()
