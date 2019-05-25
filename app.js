@@ -129,27 +129,34 @@ app.get('/api/hulu', function (req, res) {
             xmlMode: true
         })
 
+        var duplicateHuluChannels = []
         var huluChannels = []
 
         $('ul  > li').each(function(index, element) {
-            huluChannels[index] = $(this).text()
+            duplicateHuluChannels[index] = $(this).text()
         })
 
-        huluChannels.splice(0, 127)
-        huluChannels.splice(64)
+        duplicateHuluChannels.splice(0, 86)
+        duplicateHuluChannels.splice(76)
+
+        function unique(a) {
+            var seen = {}
+            return a.filter(function(item) {
+                return seen.hasOwnProperty(item) ? false: (seen[item] = true)
+            })
+        }
+
+        huluChannels = unique(duplicateHuluChannels)
+
+        console.log(huluChannels)
+        console.log(huluChannels.length)
 
         huluChannels.sort(function(a, b) {
             var stringA = a.toLowerCase(), stringB = b.toLowerCase()
-            if (stringA < stringB) {
-                return -1
-            }
-            if (stringA > stringB) {
-                return 1
-            }
+            if (stringA < stringB) { return -1 }
+            if (stringA > stringB) { return 1 }
             return 0
         })
-
-        console.log(huluChannels.length)
 
         res.write(JSON.stringify({Price: "$44.99/month", Channels: huluChannels}))
         res.end()
