@@ -321,8 +321,10 @@ app.get('/api/vue-core', function (req, res) {
             return channel.trim()
         })
 
-        vueCoreChannels.splice(0, 125)
-        vueCoreChannels.splice(50)
+        vueCoreChannels.splice(0, 100)
+        vueCoreChannels.splice(61)
+
+        console.log(vueCoreChannels)
 
         vueCoreChannels.sort(function(a, b) {
             var stringA = a.toLowerCase(), stringB = b.toLowerCase()
