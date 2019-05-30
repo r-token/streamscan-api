@@ -115,7 +115,7 @@ app.get('/api/fubo', function (req, res) {
 
         console.log(fuboChannels.length)
         
-        res.write(JSON.stringify({Price: "$54.99/month", Channels: fuboChannels}))
+        res.write(JSON.stringify({Price: "$55/month", Channels: fuboChannels}))
         res.end()
     })
 })
@@ -158,7 +158,7 @@ app.get('/api/hulu', function (req, res) {
             return 0
         })
 
-        res.write(JSON.stringify({Price: "$44.99/month", Channels: huluChannels}))
+        res.write(JSON.stringify({Price: "$45/month", Channels: huluChannels}))
         res.end()
     })
 })
@@ -298,7 +298,7 @@ app.get('/api/vue-access', function (req, res) {
 
         console.log(vueAccessChannels.length)
         
-        res.write(JSON.stringify({Price: "$44.99/month", Channels: vueAccessChannels}))
+        res.write(JSON.stringify({Price: "$45/month", Channels: vueAccessChannels}))
         res.end()
     })
 })
@@ -339,7 +339,7 @@ app.get('/api/vue-core', function (req, res) {
 
         console.log(vueCoreChannels.length)
 
-        res.write(JSON.stringify({Price: "$49.99/month", Channels: vueCoreChannels}))
+        res.write(JSON.stringify({Price: "$50/month", Channels: vueCoreChannels}))
         res.end()
     })
 })
@@ -374,7 +374,7 @@ app.get('/api/yttv', function (req, res) {
 
         console.log(YTTVChannels.length)
         
-        res.write(JSON.stringify({Price: "$49.99/month", Channels: YTTVChannels}))
+        res.write(JSON.stringify({Price: "$50/month", Channels: YTTVChannels}))
         res.end()
     })
 })
